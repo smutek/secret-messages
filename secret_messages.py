@@ -1,8 +1,33 @@
 import os
+import sys
+import time
 
 
 def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
+
+
+def hello():
+    clear_screen()
+    print("Welcome agent. Press any key to begin.")
+    input()
+    # clear screen again
+    clear_screen()
+
+
+def goodbye():
+    clear_screen()
+    # thank the user
+    print("Thank you, you were never here, but see you next time.\n")
+    count = 3
+    while count:
+        sys.stdout.write("\r")
+        sys.stdout.write("This program will self destruct in {:2d} seconds...".format(count))
+        sys.stdout.flush()
+        time.sleep(1)
+        count -= 1
+    # erase all traces, this is all so secret
+    clear_screen()
 
 
 def program_loop():
@@ -15,18 +40,22 @@ def program_loop():
 
     # our program is currently running
     program_running = True
+    input_char = "→ "
 
     while program_running:
 
         print("The available ciphers are:")
 
+        count = 1
         for cipher in available_ciphers:
-            print("- {}".format(str.capitalize(cipher)))
+            print(str(count) + ". {}".format(str.capitalize(cipher)))
+            count += 1
 
-        print("Choose a cipher by entering its name below. Enter QUIT to quit.\n")
+        print("Choose a cipher by entering its corresponding number below. Enter QUIT to quit.\n")
 
-        user_input = input("=>")
-        selected_cipher = str.lower(user_input)
+        user_input = input(input_char)
+        # -todo test user input here
+        selected_cipher = available_ciphers[int(user_input) - 1]
 
         # user has entered quit
         if selected_cipher == "quit":
@@ -38,14 +67,13 @@ def program_loop():
             clear_screen()
             while executing_cipher:
 
-                print("You've selected {}, are you encrypting or decrypting?\n"
-                      "Enter 1 if encrypting, or 2 if decrypting. Enter QUIT to quit.".format(selected_cipher))
+                print("You've selected {}, are you encrypting or decrypting?".format(str.capitalize(selected_cipher)))
+                print("Enter 1 if encrypting, or 2 if decrypting. Enter BACK to return to the main menu.\n")
 
-                user_input = input("=>")
+                user_input = input(input_char)
                 encrypt_or_decrypt = str.lower(user_input)
 
-                if encrypt_or_decrypt == "quit":
-                    executing_cipher = False
+                if encrypt_or_decrypt == "back":
                     break
 
                 if encrypt_or_decrypt == "1":
@@ -63,14 +91,14 @@ def program_loop():
             print("\nError. {} is not a valid option. Please try again.\n".format(selected_cipher))
 
     else:
-        if input("Would you like to encrypt another message? [Y, n]").lower() != "n":
+        print("Would you like to encrypt another message? [Y,n]\n")
+        if input(input_char).lower() != "n":
             program_loop()
 
-
-clear_screen()
-print("Welcome to the secret message machine.\n")
-input("Press any key to begin.")
-clear_screen()
+# greet the user
+hello()
+# run the program
 program_loop()
-clear_screen()
-print("Thank you, see you next time.")
+# we were never here
+goodbye()
+
