@@ -1,13 +1,44 @@
 from ciphers import Cipher
+import string
 
 
 class Atbash(Cipher):
-
     def __init__(self):
-        pass
+        # alphabet
+        self.alphabet = string.ascii_uppercase
+        # reverse alphabet
+        self.reverse = self.alphabet[::-1]
 
-    def encrypt(self):
-        pass
+    def encrypt(self, text):
+        encryption_key = {}
+        output = []
+        text = text.upper()
+        # build encrypt and decrypt keys as lists of corresponding
+        # key value pairs ( {A:Z, B:Y} etc.)
+        for i in range(len(self.alphabet)):
+            encryption_key[self.alphabet[i]] = self.reverse[i]
 
-    def decrypt(self):
-        pass
+        for letter in text:
+            if letter in encryption_key:
+                # match the incoming letter with its counterpart
+                output.append(encryption_key[letter])
+            else:
+                # Pass punctuation and numbers through normally
+                output.append(letter)
+
+        return ''.join(output)
+
+    def decrypt(self, text):
+        decryption_key = {}
+        output = []
+        text = text.upper()
+        for i in range(len(self.alphabet)):
+            decryption_key[self.reverse[i]] = self.alphabet[i]
+
+        for letter in text:
+            if letter not in decryption_key:
+                output.append(letter)
+            else:
+                output.append(decryption_key[letter])
+
+        return ''.join(output)
