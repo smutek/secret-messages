@@ -1,11 +1,12 @@
 from ciphers import Cipher
-import string
+from helpers import Helpers
 
 
 class Atbash(Cipher):
     def __init__(self):
         # alphabet
-        self.alphabet = string.ascii_uppercase
+        self.helpers = Helpers()
+        self.alphabet = self.helpers.alphabet()
         # reverse alphabet
         self.reverse = self.alphabet[::-1]
 

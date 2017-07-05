@@ -3,6 +3,7 @@ import sys
 import time
 import caesar
 import atbash
+import key_word
 
 
 def clear_screen():
@@ -36,7 +37,8 @@ def program_loop():
     # available ciphers
     available_ciphers = {
         '1': 'caesar',
-        '2': 'atbash'
+        '2': 'atbash',
+        '3': 'keyword'
     }
 
     # our program is currently running
@@ -92,7 +94,7 @@ def program_loop():
 
                     # get the message form the user
                     print("Enter the text you will be {}:".format(action))
-                    users_message = str.lower(input(input_char))
+                    users_message = str.upper(input(input_char))
 
                     # okay, now we know which cipher, the action to take, and the message,
                     # create an instance of the cipher
@@ -105,6 +107,15 @@ def program_loop():
                     elif selected_cipher == "atbash":
                         # create an instance of atbash
                         instance = atbash.Atbash()
+                    # keyword
+                    elif selected_cipher == "keyword":
+                        instance = key_word.Keyword()
+                        # keyword cipher requires a keyword
+                        print("The Keyword Cipher requires a keyword. Enter it below:")
+                        cipher_keyword = str.upper(input(input_char))
+                        # lets pack the user input & keyword up,
+                        # and pass the to the function together
+                        users_message = [users_message, cipher_keyword]
 
                     # run the selected action on the created instance
                     if action == "encrypting":
