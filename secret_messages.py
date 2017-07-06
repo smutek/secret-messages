@@ -4,6 +4,7 @@ import time
 import caesar
 import atbash
 import key_word
+import polybius
 
 
 def clear_screen():
@@ -37,8 +38,9 @@ def program_loop():
     # available ciphers
     available_ciphers = {
         '1': 'caesar',
-        '2': 'atbash',
-        '3': 'keyword'
+        '2': 'polybius square',
+        '3': 'atbash',
+        '4': 'keyword'
     }
 
     # our program is currently running
@@ -116,6 +118,9 @@ def program_loop():
                         # lets pack the user input & keyword up,
                         # and pass the to the function together
                         users_message = [users_message, cipher_keyword]
+                    elif selected_cipher == "polybius square":
+                        # create an instance
+                        instance = polybius.Polybius()
 
                     # run the selected action on the created instance
                     if action == "encrypting":
