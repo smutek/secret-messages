@@ -6,6 +6,7 @@ class Helpers():
     Helper class with helpful methods
      Utility type stuff. You know.
     """
+
     def unique(self, text):
         """
         Returns a list of unique elements

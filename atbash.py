@@ -11,6 +11,13 @@ class Atbash(Cipher):
         self.reverse = self.alphabet[::-1]
 
     def encrypt(self, text):
+        """
+        Encrypt text by building a dictionary of key value pairs
+        for the plain text char : encrypted text char
+
+        :param text: plain text string
+        :return: encrypted string
+        """
         encryption_key = {}
         output = []
         text = text.upper()
@@ -30,6 +37,13 @@ class Atbash(Cipher):
         return ''.join(output)
 
     def decrypt(self, text):
+        """
+        Decrypt text by building a dictionary of key value pairs
+        Essentially the same as the process above, but in reverse
+
+        :param text:
+        :return:
+        """
         decryption_key = {}
         output = []
         text = text.upper()

@@ -4,18 +4,26 @@ import re
 
 
 class Polybius(Cipher):
+    """
+    Init an instance of the helper class
+    """
     def __init__(self):
-        # instantiate an instance of the helpers class
         self.helpers = Helpers()
-        # generate a polybro square
-
-    def __process_text(self, message):
-        output = []
-
-        return ''.join(output)
 
     def encrypt(self, message):
+        """
+        Generate an instance of polybius square, which is a
+        Dict of key value pairs, where the key is the letter
+        of the alphabet and the value is the (x,y) coordinates
+        for that letter in the square. Next retrieve the
+        coordinates for that letter and append to the output
 
+        See the polybius_square() method in the helpers class
+        for more info.
+
+        :param message: string
+        :return: encrypted string
+        """
         output = []
         polybius = self.helpers.polybius_square()
 
@@ -31,16 +39,27 @@ class Polybius(Cipher):
 
     def decrypt(self, message):
 
+        """
+        To convert the encrypted string back to plain text I need
+        to split the numbers into groups of 2, since the pattern
+        is (x,y) for each letter. But, there's also spaces peppered
+        throughout the message, and spaces only take up one space...
+        so..... I'm sure there's a better way to do this, and I'll
+        smack my head when I see some elegant, one line, Pythonic
+        solution, but for now this is the best I've got. :)
+
+        Note that I & J share coordinates in the square, so both
+        I & J return as IJ when decrypted. Pizza becomes PIJZZA, etc.
+        I'd love to spend more time and solve this, but I am behind
+        and need to move on.
+
+        :param message: encrypted string
+        :return: decrypted string
+        """
+
         polybius = self.helpers.polybius_square()
         output = []
 
-        # To convert the encrypted string back to plain text I need
-        # to split the numbers into groups of 2, since the pattern
-        # is (x,y) for each letter. But, there's also spaces peppered
-        # throughout the message, and spaces only take up one space...
-        # so..... I'm sure there's a better way to do this, and I'll
-        # smack my head when I see some elegant, one line, Pythonic
-        # solution, but for now this is the best I've got. :)
 
         # First convert spaces to a character that takes up 2 spaces
         # with the re: module and a simple regex thing
