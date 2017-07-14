@@ -26,7 +26,9 @@ def goodbye():
     count = 3
     while count:
         sys.stdout.write("\r")
-        sys.stdout.write("This program will self destruct in {:2d} seconds...".format(count))
+        sys.stdout.write(
+            "This program will self destruct in {:2d} seconds...".format(
+                count))
         sys.stdout.flush()
         time.sleep(1)
         count -= 1
@@ -55,7 +57,9 @@ def program_loop():
         for option, cipher in available_ciphers.items():
             print("{}: {}".format(option, cipher))
 
-        print("Choose a cipher by entering its corresponding number below. Enter QUIT to quit.\n")
+        print(
+            "Choose a cipher by entering its corresponding number below. "
+            "Enter QUIT to quit.\n")
 
         # Collect user input
         user_input = str.lower(input(input_char))
@@ -81,8 +85,12 @@ def program_loop():
                     "2": "decrypting"
                 }
                 # ask if the user is encrypting or decrypting
-                print("You've selected {}, are you encrypting or decrypting?".format(str.capitalize(selected_cipher)))
-                print("Enter 1 if encrypting, or 2 if decrypting. Enter BACK to return to the main menu.\n")
+                print(
+                    "You've selected {}, are you encrypting or "
+                    "decrypting?".format(str.capitalize(selected_cipher)))
+                print(
+                    "Enter 1 if encrypting, or 2 if decrypting. "
+                    "Enter BACK to return to the main menu.\n")
 
                 encrypt_or_decrypt = str.lower(input(input_char))
 
@@ -91,14 +99,16 @@ def program_loop():
                 # if the user selection is a valid option
                 elif encrypt_or_decrypt in options:
 
-                    # okay we're good, grab the desired action as a var so we can reference it below
+                    # okay we're good, grab the desired action as a var so we
+                    # can reference it below
                     action = options[encrypt_or_decrypt]
 
                     # get the message form the user
                     print("Enter the text you will be {}:".format(action))
                     users_message = str.upper(input(input_char))
 
-                    # okay, now we know which cipher, the action to take, and the message,
+                    # okay, now we know which cipher, the action to take, and
+                    # the message,
                     # create an instance of the cipher
 
                     # Caesar Cipher
@@ -113,7 +123,9 @@ def program_loop():
                     elif selected_cipher == "keyword":
                         instance = key_word.Keyword()
                         # keyword cipher requires a keyword
-                        print("The Keyword Cipher requires a keyword. Enter it below:")
+                        print(
+                            "The Keyword Cipher requires a keyword."
+                            "Enter it below:")
                         cipher_keyword = str.upper(input(input_char))
                         # lets pack the user input & keyword up,
                         # and pass the to the function together
@@ -131,12 +143,16 @@ def program_loop():
                     executing_cipher = False
 
                 else:
-                    print("\nError. {} is not a valid option, please try again...\n".format(encrypt_or_decrypt))
+                    print(
+                        "\nError. {} is not a valid option, please try "
+                        "again...\n".format(encrypt_or_decrypt))
 
             program_running = False
 
         else:
-            print("\nError. {} is not a valid option. Please try again.\n".format(selected_cipher))
+            print(
+                "\nError. {} is not a valid option. Please "
+                "try again.\n".format(selected_cipher))
 
     else:
         print("Would you like to encrypt another message? [Y,n]\n")

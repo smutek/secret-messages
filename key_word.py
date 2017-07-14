@@ -6,6 +6,7 @@ class Keyword(Cipher):
     """
     init an instance of the helpers class
     """
+
     def __init__(self):
         self.helpers = Helpers()
 

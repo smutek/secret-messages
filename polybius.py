@@ -7,6 +7,7 @@ class Polybius(Cipher):
     """
     Init an instance of the helper class
     """
+
     def __init__(self):
         self.helpers = Helpers()
 
@@ -60,7 +61,6 @@ class Polybius(Cipher):
         polybius = self.helpers.polybius_square()
         output = []
 
-
         # First convert spaces to a character that takes up 2 spaces
         # with the re: module and a simple regex thing
         # this turns the string from "1213 1415" to "1213::1415"
@@ -68,7 +68,8 @@ class Polybius(Cipher):
         n = 2
         # next split the string into chunks of 2. This gives back a
         # list of pairs, so "1213::1415" becomes ['12', '13', '::', '14', '15']
-        pairs_list = [convert_spaces[i:i + 2] for i in range(0, len(convert_spaces), 2)]
+        pairs_list = [convert_spaces[i:i + 2] for i in
+                      range(0, len(convert_spaces), 2)]
 
         # Now render the output by going through each pair and matching it
         # to a pair in the polybius square so we can pull the appropriate key
