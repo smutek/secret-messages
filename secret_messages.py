@@ -144,9 +144,10 @@ def program_loop():
             program_loop()
 
 
-# greet the user
-hello()
-# run the program
-program_loop()
-# we were never here
-goodbye()
+if __name__ == '__main__':
+    # greet the user
+    hello()
+    # run the program
+    program_loop()
+    # we were never here
+    goodbye()
