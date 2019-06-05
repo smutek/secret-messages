@@ -1,8 +1,10 @@
 # Secret Messages
 
-Project 2 in the Treehouse Python tech degree program.
+CLI app written in Python. Implements 3 classic encryption algorithms.
 
 ## Project Overview
+
+Project 2 in the Treehouse Python tech degree program.
 
 Most of us have, at one time or another, wanted to pass messages to our friends that other people couldn't read. Maybe it was a note in class, a midnight rendezvous, or something more serious like invasion plans. Whatever the purpose, you'd want your message to be encoded so only the people you want to can read it. That's where ciphers come in!
 
